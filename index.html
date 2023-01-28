@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Light Game</title>
+  <meta name="description" content="Jogo de Memória em JS">
+  <link rel="shortcut icon" href="./imgs/favicon.ico">
+  <link rel="stylesheet" href="./css/lightGame.css">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="Paulo Osawa">
+</head>
+<body>
+  <header>
+    <h1>LIGHT GAME</h1>
+    <h2>Repita a sequência das luzes após o sinal verde!!!</h2>
+  </header>
+  <!-- ==================== MAIN ================== -->
+  <main>
+    <div class="dvmain">
+
+      <div class="tits">
+      </div>
+
+      <div class="dvfase">
+        <div class="dvini actv">
+          <div class="flex jc">
+            <h3>Você terá direito a + 1 erro a cada 3 fases!!!</h3>
+            <button class="btncor" name="btstart">COMEÇAR</button>
+          </div>
+        </div>
+
+        <div class="dvinfo">
+          <h2>ERROS: <span class="spnerr"> 0</span></h2>
+          <h2>FASE: <span class="spnfase"> 1</span></h2>
+          <div class="dvluzes">
+            <div class="dvlred"></div>
+          </div>
+          <button class="btncor" name="btread">PRONTO?</button>
+          <button class="btncor hiden" name="btreset">REINICIAR</button>
+        </div>
+
+        <div class="dvmsg"><h2>Parabéns!</h2><h3></h3></div>
+      </div>
+      <div class="bgpredios"> </div>
+      <div class="fullpredio">
+        <div class="topo"> </div>
+        <div class="predio disab" tabindex="-1">
+          <div class="janela" role="button" aria-label="janela 1" tabindex="0"> </div>
+          <div class="janela" role="button" aria-label="janela 2" tabindex="0"> </div>
+          <div class="janela" role="button" aria-label="janela 3" tabindex="0"> </div>
+
+          <div class="janela" role="button" aria-label="janela 4" tabindex="0"> </div>
+          <div class="janela" role="button" aria-label="janela 5" tabindex="0"> </div>
+          <div class="janela" role="button" aria-label="janela 6" tabindex="0"> </div>
+
+          <div class="janela" role="button" aria-label="janela 7" tabindex="0"> </div>
+          <div class="janela" role="button" aria-label="janela 8" tabindex="0"> </div>
+          <div class="janela" role="button" aria-label="janela 9" tabindex="0"> </div>
+
+          <div class="janela" role="button" aria-label="janela 10" tabindex="0"> </div>
+          <div class="janela" role="button" aria-label="janela 11" tabindex="0"> </div>
+          <div class="janela" role="button" aria-label="janela 12" tabindex="0"> </div>
+        </div>
+        <div class="base"> </div>
+      </div>     
+
+    </div>
+  </main>
+  <!-- #region -->
+  <footer>
+    <div class="dvfooter">
+      <div class="dvlinks">
+        <div class="dvmidias" role="menubar" aria-label="links para mídias sociais">
+          <nav class="socialinks">
+            <ul>
+              <!-- <li><a href="https://linkedin.com" title="Linkedin" target="_blank" rel="noopener"><div class="svlkdin"> </div></a></li> -->
+              <li><a href="https://github.com" title="GitHub" target="_blank" rel="noopener"> <div class="svgit"></div> </a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <p class="pright"><b>&copy; 2023 Light Game</b> - <span role="doc-credits" aria-label="criador do site"> Criado por Paulo Osawa</span></p>
+    </div>
+  </footer>
+  <script>
+    window.onload = () => {
+      const scr = document.createElement("script");
+      scr.src = "./js/lightGame.js";
+      document.body.appendChild(scr);
+    };
+  </script>
+</body>
+<!-- #endregion -->
+</html>
