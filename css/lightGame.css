@@ -1,0 +1,189 @@
+@charset "utf-8";
+/* CSS Document */
+/**
+  * Documento CSS criado por Paulo Osawa
+  * Estilo Destinado à página Light Game - Jogo de Memória
+  * Colaboradores:
+*/
+/*#region ========================================== BEGIN ==== */
+html, body {
+  padding:0; margin:0; text-align: center; font-size: 1rem; scroll-behavior: smooth;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+body { font-size: clamp(16px, calc(.75rem + .45vw + 1px), 20px); min-width: 350px; }
+html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
+article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}
+a {color: inherit; text-decoration:none;} a:active, a:hover{cursor: pointer; outline-width:0}
+button,[type=button],[type=reset],[type=submit]{cursor: pointer}
+img{border-style:none; max-width:100%; height:auto; vertical-align:middle}
+[hidden] {display: none} ul{ padding:0; margin:0} ul, li {text-decoration:none; list-style:none}
+/*#endregion*/
+:root {
+  color: white; --cordark: #03045E; --cor: #003386;
+  --coralpha: #003386cf; --corb: #0077B6;
+  --pt: path("m 0.7,1.2 V 4.376 L 49.7,7.42 v 0 0 0 0 L 99.3,4.376 V 1.2 L 49.7,6.824 Z m 0,4.66 v 2.94 L 49.7,8.6 v 0 l 49.6,0.2 v -2.94 l -49.6,2.1 v 0 z M 49.7,9.2 0.7,10.9 v 2.53 L 49.72,9.8 99.3,13.4 V 10.9 L 49.73,9.2 Z m 0,1.2 v 0 L 0.7,15 v 3.77 l 49,-7.8 49.6,7.8 V 15 L 49.73,10.4 v 0 0 z");
+  --dgrda: linear-gradient(to right, var(--cor), black 40% 60%, var(--cor));
+  --urstar: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' %3E%3Cpath style='fill: white;' d='M 4.333,5.438 3.701,4.708 3.352,5.608 3.529,4.659 2.607,4.947 3.46,4.493 2.659,3.952 3.546,4.336 3.47,3.373 3.722,4.305 4.428,3.645 3.857,4.424 4.812,4.565 3.847,4.603 Z'  /%3E%3C/svg%3E");
+  --pthlkdin: path("M 5,24.6 H 9.4 V 11.7 H 5 Z M 9.7,7.7 q 0,-0.9 -0.6,-1.6 -0.6,-0.6 -1.7,-0.6 -1.1,0 -1.8,0.6 -0.7,0.6 -0.7,1.6 0,0.9 0.7,1.6 0.6,0.6 1.7,0.6 v 0 q 1.1,0 1.8,-0.6 0.6,-0.6 0.6,-1.6 z M 20.6,24.6 h 4.3 v -7.4 q 0,-2.9 -1.3,-4.3 -1.3,-1.5 -3.6,-1.5 -2.5,0 -4,2.2 v 0 -1.9 h -4.3 q 0.1,1.2 0,12.9 h 4.3 v -7.2 q 0,-0.7 0.1,-1.0 0.28,-0.6 0.87,-1.11 0.55,-0.4 1.3,-0.4 2.2,0 2.2,3 z M 29.3,6 v 18 q 0,2 -1.5,3.8 -1.5,1.5 -3.8,1.5 H 6 q -2,0 -3.8,-1.5 Q 0.6,26 0.6,24 V 6 q 0,-2.2 1.6,-3.8 1.6,-1.6 3.8,-1.6 H 23.9 q 2,0 3.8,1.6 1.5,1.5 1.5,3.8 z");
+  --pthlkdinb: path("M 9,40.44 H 16.1 V 19.8 H 9 Z M 16.6,13.37 c 0,-0.96 -0.3,-1.8 -0.96,-2.55 -0.63,-0.65 -1.53,-0.97 -2.7,-0.97 -1.2,0 -2.2,0.32 -2.95,0.97 -0.75,0.63 -1.1,1.5 -1.1,2.55 0,0.97 0.375,1.8 1.1,2.57 0.63,0.64 1.56,0.96 2.8,0.96 v 0 c 1.17,0 2.1,-0.3 2.87,-0.96 0.64,-0.64 0.96,-1.5 0.96,-2.57 z m 17.43,27.07 h 6.9 V 28.6 c 0,-3.1 -0.7,-5.4 -2.1,-6.9 -1.4,-1.6 -3.3,-2.4 -5.76,-2.4 -2.67,0 -4.8,1.17 -6.4,3.52 v 0 -3 h -6.9 c 0.1,1.27 0.11,8.16 0,20.65 h 6.9 V 28.9 c 0,-0.75 0.1,-1.3 0.15,-1.6 0.3,-0.65 0.75,-1.24 1.4,-1.8 0.6,-0.43 1.3,-0.65 2.1,-0.65 2.35,0 3.53,1.6 3.53,4.82 z M 48,10.66 v 28.82 c 0,2.13 -0.8,4.16 -2.4,6.1 C 44,47.2 41.95,48 39.5,48 H 10.65 C 8.5,48 6.5,47.2 4.5,45.57 2.855,43.64 2,41.6 2,39.48 V 10.66 C 2,8.3 2.855,6.27 4.56,4.56 6.27,2.8 8.3,2 10.65,2 h 28.7 c 4.9,0.55 8.1,3.74 8.66,8.663 z");
+  --urlrays: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='200' viewBox='0 6 100 10' %3E%3Cpath fill='white' fill-opacity='.7' stroke='black' stroke-width='.1' stroke-opacity='1' style='filter: drop-shadow(0px -3px 3px black)' d='m 0.7,1.2 V 4.376 L 49.7,7.42 v 0 0 0 0 L 99.3,4.376 V 1.2 L 49.7,6.824 Z m 0,4.66 v 2.94 L 49.7,8.6 v 0 l 49.6,0.2 v -2.94 l -49.6,2.1 v 0 z M 49.7,9.2 0.7,10.9 v 2.53 L 49.72,9.8 99.3,13.4 V 10.9 L 49.73,9.2 Z m 0,1.2 v 0 L 0.7,15 v 3.77 l 49,-7.8 49.6,7.8 V 15 L 49.73,10.4 v 0 0 z' /%3E%3C/svg%3E");
+
+  --predios: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1922 600' %3E%3Cpath fill='black' d='m 876,649 v 63 c 0,48 -1,65 -2,66 -1,1 -11,1 -30,1 h -27 l -1,24 v 24 l -47,1 h -47 l -1,21 c -2,31 1,28 -22,27 -25,-1 -23,-1 -40,0 -9,1 -15,1 -16,-1 -1,-1 -2,-29 -3,-98 l -1,-98 h -16 l -194,-1 -9,-5 -3,-6 -3,6 v 5 h -13 l -13,1 v 65 c 0,35 0,73 -1,85 l -1,23 h -30 c -26,0 -31,0 -31,2 0,1 -1,7 -2,14 l -1,11 -38,1 h -38 l -1,-4 c -1,-3 -2,-40 -2,-84 l -1,-78 -21,-1 -21,-1 v -3 c -1,-6 -4,-7 -5,-1 v 4 l -16,1 -16,1 -1,38 v 38 l -16,1 c -15,0 -16,0 -22,-5 -10,-6 -32,-6 -41,1 -6,5 -10,5 -13,0 -2,-5 -3,-5 -5,-1 -1,3 -3,4 -8,5 h -7 l -1,43 c 0,23 -1,43 -2,44 -1,1 -12,2 -38,2 H -1 v 200 h 950 c 534,0 967,0 972,-1 V 879 h -26 l -36,-1 v -7 c 0,-3 -2,-8 -2,-11 v -5 h -22 -19 l -2,5 v 11 l -2,7 h -20 -19 l -2,-13 -2,-14 h -31 -32 l -1,14 v 14 h -20 -20 l -2,-4 c 0,-3 -1,-20 -1,-40 l -2,-36 -9,-1 c -10,-1 -12,-1 -12,-4 0,-6 -5,-7 -27,-7 -25,0 -27,0 -27,7 0,3 -1,3 -6,3 -5,0 -5,0 -5,-3 -1,-6 -3,-7 -3,-1 -2,3 -2,4 -6,4 l -7,2 v 38 c -1,21 -1,39 -3,39 0,3 -12,3 -67,3 h -69 l -1,-11 c 0,-7 -1,-44 -2,-84 l -1,-71 -13,-1 c -12,0 -16,-1 -17,-2 -3,-4 -38,-4 -40,0 -1,3 -10,3 -10,0 0,-2 -1,-3 -2,-3 0,0 -1,1 -1,3 0,1 -2,2 -6,2 l -7,1 v 72 c -1,41 -2,78 -3,84 l -1,10 h -40 -40 l -1,-7 c -1,-4 -2,-42 -2,-85 l -1,-78 h -15 -15 v 81 c -1,45 -2,83 -2,85 -2,4 -2,4 -19,4 h -17 l -1,-8 -1,-6 h -15 c -13,0 -17,-1 -17,-3 -1,-2 -4,-2 -16,-2 -8,0 -15,0 -15,-1 0,0 -1,-13 -1,-28 l -2,-28 h -15 c -8,-1 -16,-1 -16,-2 0,-3 -9,-7 -17,-7 -5,0 -8,2 -11,5 -3,3 -5,3 -19,4 h -15 l -1,25 c 0,14 0,28 0,32 0,7 -1,8 -2,8 -3,0 -3,-1 -3,-7 0,-4 -1,-11 -2,-17 l -1,-11 h -44 l -45,-1 v -25 c -1,-20 -1,-26 -3,-27 -2,-1 -3,-12 -3,-66 v -63 l -11,-1 z' /%3E%3C/svg%3E");
+  --pthpredios: path("m 876,649 v 63 c 0,48 -1,65 -2,66 -1,1 -11,1 -30,1 h -27 l -1,24 v 24 l -47,1 h -47 l -1,21 c -2,31 1,28 -22,27 -25,-1 -23,-1 -40,0 -9,1 -15,1 -16,-1 -1,-1 -2,-29 -3,-98 l -1,-98 h -16 l -194,-1 -9,-5 -3,-6 -3,6 v 5 h -13 l -13,1 v 65 c 0,35 0,73 -1,85 l -1,23 h -30 c -26,0 -31,0 -31,2 0,1 -1,7 -2,14 l -1,11 -38,1 h -38 l -1,-4 c -1,-3 -2,-40 -2,-84 l -1,-78 -21,-1 -21,-1 v -3 c -1,-6 -4,-7 -5,-1 v 4 l -16,1 -16,1 -1,38 v 38 l -16,1 c -15,0 -16,0 -22,-5 -10,-6 -32,-6 -41,1 -6,5 -10,5 -13,0 -2,-5 -3,-5 -5,-1 -1,3 -3,4 -8,5 h -7 l -1,43 c 0,23 -1,43 -2,44 -1,1 -12,2 -38,2 H -1 v 200 h 950 c 534,0 967,0 972,-1 V 879 h -26 l -36,-1 v -7 c 0,-3 -2,-8 -2,-11 v -5 h -22 -19 l -2,5 v 11 l -2,7 h -20 -19 l -2,-13 -2,-14 h -31 -32 l -1,14 v 14 h -20 -20 l -2,-4 c 0,-3 -1,-20 -1,-40 l -2,-36 -9,-1 c -10,-1 -12,-1 -12,-4 0,-6 -5,-7 -27,-7 -25,0 -27,0 -27,7 0,3 -1,3 -6,3 -5,0 -5,0 -5,-3 -1,-6 -3,-7 -3,-1 -2,3 -2,4 -6,4 l -7,2 v 38 c -1,21 -1,39 -3,39 0,3 -12,3 -67,3 h -69 l -1,-11 c 0,-7 -1,-44 -2,-84 l -1,-71 -13,-1 c -12,0 -16,-1 -17,-2 -3,-4 -38,-4 -40,0 -1,3 -10,3 -10,0 0,-2 -1,-3 -2,-3 0,0 -1,1 -1,3 0,1 -2,2 -6,2 l -7,1 v 72 c -1,41 -2,78 -3,84 l -1,10 h -40 -40 l -1,-7 c -1,-4 -2,-42 -2,-85 l -1,-78 h -15 -15 v 81 c -1,45 -2,83 -2,85 -2,4 -2,4 -19,4 h -17 l -1,-8 -1,-6 h -15 c -13,0 -17,-1 -17,-3 -1,-2 -4,-2 -16,-2 -8,0 -15,0 -15,-1 0,0 -1,-13 -1,-28 l -2,-28 h -15 c -8,-1 -16,-1 -16,-2 0,-3 -9,-7 -17,-7 -5,0 -8,2 -11,5 -3,3 -5,3 -19,4 h -15 l -1,25 c 0,14 0,28 0,32 0,7 -1,8 -2,8 -3,0 -3,-1 -3,-7 0,-4 -1,-11 -2,-17 l -1,-11 h -44 l -45,-1 v -25 c -1,-20 -1,-26 -3,-27 -2,-1 -3,-12 -3,-66 v -63 l -11,-1 z");
+}
+/*#region ========================================== BEGIN ==== */
+h1 { font-size: 2.8em; line-height: 1em; margin: .2em auto; }
+h2 { font-size: 1.5em; line-height: 1.4em; }
+h1, h2, h3, .pright { font-style: italic; }
+h1, h2, h3, .spnerr, .spnfase, .grow, .btncor { font-weight: 600; }
+h2, h3, h4, h5 { margin:0; padding: 6px; }
+h3 { margin: 0 10px; }
+.dvmsg > h2 { padding: 6px 0; text-transform: capitalize; }
+header, main, footer, .dvmain, .topo, .base, .dvlinks p { width: 100%; }
+header, footer { padding: 15px 40px; }
+main { height: 84vh; height: auto; padding: 2px; }
+header, main, footer, .dvmidias ul, .flex, .dvmain, .dvinfo, .dvluzes, .fullpredio, .predio, .janela, .dvfooter { display: flex; }
+.flex { justify-content: space-around; gap: 10px; }
+header, .dvmain, .fullpredio, .janela { flex-direction: column; }
+.flex.sb, .dvmain, .dvluzes { justify-content: space-between; }
+.flex.jc, .dvinfo, .fullpredio, .predio, .janela, footer, .dvfooter { justify-content: center; }
+header, .dvmidias ul, .flex, .dvmain, .dvinfo, .dvluzes, .fullpredio, .predio, .janela, footer, .dvfooter { align-items: center; }
+.dvinfo, .predio, .dvfooter { flex-wrap: wrap; }
+.dvlinks .socialinks ul { gap: 20px;}
+.dvmidias li a > div { width: 30px; height: 30px; margin: .2em auto; background: white; transform: scale(1.2); }
+
+.btncor {
+  font-size: inherit; padding: 9px 1.5em; border-radius: 7px;
+  background: linear-gradient(black, var(--cor) 65%); transition: .2s;
+}
+.btncor:hover {
+  background: linear-gradient(var(--cor), black); filter: brightness(1.3);
+  box-shadow: 1px 1px 3px rgb(107, 107, 107); transition: .2s;
+}
+.btncor:active { border-style: inset; }
+/*#endregion*/
+/* ================================ lightGame CSS ==== */
+header {
+  background:
+    no-repeat var(--urlrays),
+    /* linear-gradient(to right, black, var(--cor), black), */
+    /* , var(--dgrda)  */
+    linear-gradient(to right, var(--cor), black , var(--cor))
+  ;
+  background-position: center top;
+  /* background-size: 140% 750%, contain; */
+  background-blend-mode: overlay, normal;
+  filter: brightness(1.2);
+  justify-content: space-around;
+}
+.dvmain {
+  position: relative; margin: 0 auto; padding: 18px; gap: 2px; height: auto;
+  background: 8% 8% / 20% 40% repeat var(--urstar),  40% 42% / 20% 30% repeat var(--urstar),
+    linear-gradient( -181deg, black 36%,rgba(0, 0, 0, 0.95) 43%, hsla(217, 83%, 28%, 0.97) 66%, #6688c6c8 76%,black 88%)
+  ;
+}
+/* #region ----------------------- FONTS -- */
+h1, h2, h3 {
+  text-shadow: 2px 2px 1px var(--cor), 2px 2px 1px var(--cor),
+    -1px -1px 1px var(--corb), 3px 3px 2px var(--corb),
+    1px 1px .1em white, 2px 2px .1em white, 3px 3px 1px white;
+}
+.dvmain h3 { text-shadow: 2px 2px 1px rgb(255, 0, 0); }
+.tits { opacity: 1; max-height: 0px; transition: all .6s; }
+/* #endregion -------------------- */
+/* #region -------- DV FASE ------ */
+.dvfase { min-height: 120px; height: auto; margin: .15vw auto; }
+.dvfase > .actv {
+  opacity: 1; max-height: 135px; padding: 15px 10px; border-radius: 7px;
+  box-shadow: 3px 3px 9px rgba(198, 227, 244, 0.5);
+  visibility: visible; transition: all .5s;
+}
+/* ------------------------------------------------------ */
+.hiden, .dvfase > div:not(.actv), .dvini:not(.actv) > * {
+  opacity: 0; max-height: 1px; visibility: hidden; transition: all .4s;
+}
+.dvini:not(.actv) > * { transition: all .1s; }
+/* ---------------------------------------------------------- */
+.btncor.hiden { display: none; }
+button.disab { filter: grayscale(.7); color: grey; }
+.btncor.blink { color: rgb(38, 255, 0); font-size: 1.2em; transition: all .2s .1s;}
+.dvinfo { gap: 12px; margin: 0 auto; }
+.spnerr, .spnfase { transition: .5s; padding: 0 10px; }
+.grow { font-size: 1.5em; transition: .6s .1s; }
+.spnerr.grow { color: red; }
+/* #region -------- DV LUZES ------ */
+.dvluzes { width: fit-content; height: 50px; padding: 0 10px; }
+.dvluzes > div {
+  width: 50px; height: 50px; border-radius: 50%;
+  background-color: red; opacity: .6;
+  border: 3px solid white;  transition: .2s;
+}
+.dvluzes > .read { background-color: yellow; opacity: .6; transition: .4s; }
+.dvluzes > .on { background-color: chartreuse; border-color: green; opacity: 1; animation: brilho .6s both; }
+/* #endregion -------------- */
+.dvmsg {
+  padding: 0; margin-top:0; transition: .4s; background: linear-gradient(to right, black, var(--cor) 30% 70%, black);
+}
+.dvmsg.actv { padding: 4px; box-shadow: none; transition: .5s; }
+/* #endregion -------------- */
+
+/* #region -------- DV predio ------ */
+.fullpredio {
+  width: 99%; max-width: 550px; min-height: 64vh;
+  filter: grayscale(.3); height: auto; margin: 5px auto;
+}
+.fullpredio:focus-within { filter: grayscale(0); }
+.topo, .base {
+  height: 40px; flex: none; background-color: #8f7349;
+  box-shadow: 0px 0px 5px rgb(50, 50, 50); border-radius: 3px;
+  filter: drop-shadow(2px 0px 2px rgb(0, 0, 0));
+}
+
+.predio {
+  width: 93%; height: 84%; padding: 1.5% 3%; gap: 0 6%;
+  background: url('../imgs/paternTijoloD.jpg');
+  background-color: rgb(255, 212, 204); outline: none;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  counter-reset: numJanelas;
+}
+.janela {
+  font-size: 2em; cursor: pointer; width: 28%;
+  height: 17%; border-radius: 3px;
+  background: center center / 100% 100% url('../imgs/janelaac.jpg');
+  filter: sepia(.1) saturate(2); color: rgba(128, 128, 128, 0.1);
+}
+.janela::before { content: counter(numJanelas); }
+.janela:nth-child(1n+2){ counter-increment: numJanelas; }
+.janela:active{ border: 2px solid rgb(174, 176, 125); }
+.broken { background: center center / 100% 100% url('../imgs/janelaQuebrada.jpg'); }
+.acesa { filter: sepia(3) saturate(4); }
+.acende { animation: pisca 2s both; }
+.acesa, .disab { pointer-events: none; }
+.predio:not(.disab) > .janela:focus {
+  border: 2px solid rgb(174, 176, 125); outline: 2px solid rgb(126, 127, 54);
+}
+.btncor {  color: white; }
+/* #endregion -------------- */
+
+/*#region ========================================== FOOTER ==== */
+footer{ background: linear-gradient(black, var(--cor), black);}
+.dvfooter { margin: 18px auto; }
+.dvfooter > * { margin: 10px; }
+.pright{ line-height: 1.3em; padding:0 0 .3em 0; border-bottom: 1px solid white; }
+/* .svlkdin { clip-path: var(--pthlkdin); } */
+.svgit {
+  clip-path: path("m 10.23,20.6 c 0.1,-0.3 -0.2,-0.4 -0.2,-0.4 0,0.2 0.2,0.4 0.2,0.4 z M 9.635,19.7 c -0.1,0.2 0.1,0.4 0.2,0.4 v -0.27 c 0,0.1 -0.21,0.1 -0.21,0.1 z m -0.6,-0.8 h -0.2 c 0,0.1 0,0.2 0.1,0.2 z m 0.4,0.4 v 0 c 0,0 -0.1,-0.2 -0.2,-0.2 0,0 -0.1,0.1 0,0.2 z m 1.195,1.3 c -0.4,0.1 0.1,0.18 0.1,0.2 0.5,-0.1 0,-0.2 -0.1,-0.2 z m 1,0.2 c 0,-0.1 -0.2,-0.1 -0.3,-0.15 -0.5,0.1 0.2,0.1 0.3,0.15 z m 0.7,-0.2 c 0,0 -0.2,0.1 -0.46,0.1 -0.1,0.4 0.4,0 0.4,-0.1 z M 5.435,14.9 c 0.35,4.2 2.8,7.8 6.595,9 h 0.5 c 0.1,-0.1 0.15,-0.3 0.15,-0.45 V 21.9 h -0.3 c -1.35,0 -2.35,0 -2.945,-1.3 -0.3,-0.7 -0.7,-1.2 -1.1,-1.33 0,-0.17 -0.3,-0.37 -0.3,-0.37 v 0 c 0,-0.1 0,-0.1 0.1,-0.1 h 0.6 c 0.1,0 0.3,0 0.56,0.1 0.2,0.2 0.4,0.5 0.6,0.7 0.195,0.3 0.395,0.6 0.695,0.8 0.2,0.1 0.54,0.1 0.8,0.15 h 0.7 c 0.2,-0.1 0.4,-0.15 0.55,-0.15 0.1,-0.6 0.3,-1.11 0.6,-1.3 -0.6,0 -1,-0.1 -1.6,-0.37 -0.46,-0.1 -1,-0.3 -1.36,-0.6 -0.395,-0.4 -0.795,-1 -0.995,-1.6 -0.2,-0.5 -0.36,-1.2 -0.36,-2.1 0,-1 0.3,-2 1,-2.5 -0.3,-0.76 -0.2,-1.6 0,-2.601 0.195,-0.1 0.605,0 1.005,0.2 0.4,0.16 0.8,0.3 1,0.4 L 12.4,10.3 c 0.7,-0.25 1.5,-0.371 2.4,-0.371 0.87,0 1.6,0.101 2.4,0.371 0.1,-0.1 0.3,-0.2 0.5,-0.372 0.2,-0.1 0.57,-0.2 1,-0.4 0.46,-0.2 0.8,-0.3 1,-0.2 0.36,0.952 0.4,1.802 0.1,2.502 0.67,0.6 1,1.5 1,2.5 0,0.6 -0.1,1.3 -0.25,1.9 -0.2,0.5 -0.42,0.9 -0.7,1 -0.2,0.4 -0.6,0.65 -1,0.75 -0.4,0.3 -0.8,0.5 -1,0.6 -0.4,0.1 -0.8,0.2 -1.3,0.2 0.43,0.35 0.65,1 0.65,1.74 v 1.73 1 c 0,0.1 0.1,0.3 0.1,0.46 h 0.5 c 4.45,-2.2 6.5,-5.65 6.57,-9 0,-4.85 -4,-9.5 -9.37,-9.357 C 9.635,5.499 5.535,9.9 5.435,14.9 Z M 29.33,5.95 V 24 c 0,1.55 -0.5,2.8 -1.6,4 -1,1 -2.3,1.5 -3.8,1.5 H 6 C 4.6,29.3 3.3,28.8 2.2,27.8 1.2,26.7 0.6,25.45 0.6,24 V 5.9 c 0.1,-1.45 0.6,-2.73 1.65,-3.73 1,-1 2.3,-1.6 3.75,-1.5 h 17.95 c 1.5,0 2.76,0.5 3.8,1.6 1,1 1.6,2.2 1.6,3.8 z");
+}
+/*#endregion*/
+
+/*#region ----------------------- FX -- */
+@keyframes pisca {
+  0%, 100% { filter: sepia(0.1) saturate(3); border: 0px solid rgb(0, 0, 0); }
+  35%, 50% { filter: sepia(4) saturate(6); border: 3px solid rgb(160, 160, 200); }
+}
+@keyframes brilho {
+  0%, 100% { filter: contrast(1) saturate(1); }
+  50% { transform: scale(1.2); filter: contrast(3) saturate(4); }
+}
+/*#endregion -------------------- */
