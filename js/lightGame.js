@@ -5,11 +5,6 @@
  */
 function lightGame() {
   
-  const setElemnts = (arElms = [], pai) => arElms.map(elm => (pai ?? document).querySelector(elm));
-
-  // #region ====
-  // const [dvmain, dvfase, dvini, dvinfo, dvluzes] = setElemnts(['.dvmain', '.dvfase', '.dvini', '.dvinfo', '.dvluzes']);
-
   const dvmain = document.querySelector('.dvmain');
   const dvfase = document.querySelector('.dvfase');
   const dvini = document.querySelector('.dvini');
@@ -17,7 +12,6 @@ function lightGame() {
   const dvluzes = document.querySelector('.dvluzes');
 
   const dvluz = dvluzes.children.item(0);  
-  // const [dvmsg, spnerr, spnfase] = setElemnts(['.dvmsg', '.spnerr', '.spnfase']);
   const dvmsg = document.querySelector('.dvmsg');
   const spnerr = document.querySelector('.spnerr');
   const spnfase = document.querySelector('.spnfase');
@@ -29,13 +23,12 @@ function lightGame() {
   const btread = document.querySelector('button[name=btread]');
   const btreset = document.querySelector('button[name=btreset]');
 
-  // #endregion ====
-  const arSeq = [2, 4]
+  const arSeq = [2, 4];
   const numJanelas = predio.children.length;
   let state = 'off'
-  let [fase, erros, clicks] = [1, 0, 0]
-  const arStates = ['off', 'ini', 'show', 'game', 'over']
-  // #region ============================  FN HELPERS ====== */
+  let [fase, erros, clicks] = [1, 0, 0];
+  const arStates = ['off', 'ini', 'show', 'game', 'over'];
+
   const showMsgBox = (msg, fn, ...fnargs) => {
     const txtMsg = msg.replace(/([a-zé ]+! )/i, '');
     dvmsg.querySelector('h2').textContent = msg.replace(txtMsg, '');
@@ -96,7 +89,7 @@ function lightGame() {
     predio.querySelectorAll('.broken').forEach(j => j.classList.remove('broken'))
     predio.classList.add('disab');
   }
-  // ----------------------------------------
+
   const addErr = (i) => {
     erros = (state !== 'game') ? 0 : erros + 1;
     rendSpans(erros);
@@ -109,10 +102,7 @@ function lightGame() {
       showMsgBox('GAME OVER! Tente Novamente!', reseta, state);
     }
   }
-  /* --------------------------------------- */
-  // #endregion
 
-  // ----------------------------------------
   const clicouJanela = (i) => {
     if(state !== 'game'){ return console.log('sem jogo', i ); }
     if(clicks >= arSeq.length){ return; }
@@ -128,7 +118,7 @@ function lightGame() {
     janelas.item(i).classList.add('acesa');
     if(clicks >= arSeq.length){ novaFase();}
   }
-  // #region ------------------- showJanelas -----
+
   const geraDifNum = () => {
     const niuNum = parseInt(Math.random() * (numJanelas - 1) + 1);
     return arSeq.includes(niuNum) ? geraDifNum() : niuNum;
@@ -159,8 +149,7 @@ function lightGame() {
       janelas.item(arSeq[i]).classList.add('acende');
     }, 1600);
   }
-  // #endregion
-  // ----------------------------------------
+
   const novaFase = () => {
     // console.log('novaFase', fase + 1);
     if (fase > 9) {
@@ -174,7 +163,7 @@ function lightGame() {
     const msg = 'Parabéns! Você Passou para a Fase '+fase+'!!';
     showMsgBox(msg, reseta);
   }
-  // ----------------------------------------
+
   const goGame = (e) => {
     if (state !== 'ini') { return; }
     if (state === 'over') {return showMsgBox('Clique em Reiniciar!'); }
@@ -183,7 +172,7 @@ function lightGame() {
     btreset.classList.add('disab');
     setTimeout(() => { showJanelas(); },1200);
   }
-  // ----------------------------------------
+
   const reseta = (st) => {
     clicks = 0;
     state = 'ini';
@@ -194,19 +183,17 @@ function lightGame() {
     rendSpans(0, 1);
     arSeq.splice(0, arSeq.length, 0, 1);
     if (st !== 'ini') {
-      dvmain.querySelector('.tits').classList.remove('hiden');
       dvinfo.classList.remove('actv');
       dvini.classList.add('actv');
       state = 'off';
     }
   }
-  // ----------------------------------------
+
   const comeca = (e) => {
-    dvmain.querySelector('.tits').classList.add('hiden');
     dvini.classList.remove('actv');
     dvinfo.classList.add('actv');
     reseta('ini');
-    // window.scrollTo({top:400, behavior:'smooth'})
+    dvmain.scrollIntoView({block:"start", behavior:"smooth"});
   }
 
   const canPlay = () => { return state === 'game' && !predio.classList.contains('disab') }
