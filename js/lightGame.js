@@ -4,14 +4,14 @@
  * Colaboradores:
  */
 function lightGame() {
-  
+
   const dvmain = document.querySelector('.dvmain');
   const dvfase = document.querySelector('.dvfase');
   const dvini = document.querySelector('.dvini');
   const dvinfo = document.querySelector('.dvinfo');
   const dvluzes = document.querySelector('.dvluzes');
 
-  const dvluz = dvluzes.children.item(0);  
+  const dvluz = dvluzes.children.item(0);
   const dvmsg = document.querySelector('.dvmsg');
   const spnerr = document.querySelector('.spnerr');
   const spnfase = document.querySelector('.spnfase');
@@ -22,6 +22,7 @@ function lightGame() {
   const btstart = document.querySelector('button[name=btstart]');
   const btread = document.querySelector('button[name=btread]');
   const btreset = document.querySelector('button[name=btreset]');
+  const linkGit = document.querySelector('footer a');
 
   const arSeq = [2, 4];
   const numJanelas = predio.children.length;
@@ -37,46 +38,35 @@ function lightGame() {
     predio.classList.add('disab');
     dvinfo.classList.remove('actv');
     dvmsg.classList.add('actv');
-    setTimeout(() => {
+    const msgtime = setTimeout(() => {
       dvmsg.classList.remove('actv');
       btreset.classList.remove('disab');
-      changeSignColor();
       if(fn) { fn(...fnargs); }
+      clearTimeout(msgtime);
     }, 4000);
-
   }
   const togHiden = (...elms) => elms.forEach(elm => elm.classList.toggle('hiden'));
 
   const rendSpans = (err, fas) => {
-    let addgrow = false;
-    if(fas){
-      fase = fas;
-      spnfase.textContent = fas;
-      if(fas !== 1){ addgrow = true; spnfase.classList.add('grow'); }
-    }
-    erros = err;
-    spnerr.textContent = erros;
-    if(erros !== 0){ addgrow = true; spnerr.classList.add('grow'); }
-    if(addgrow){
-      setTimeout(() => {
-        dvinfo.querySelectorAll('.grow').forEach(spn => spn.classList.remove('grow'));
-      },700);
-    }
+    const spanelm = !fas ? spnerr : spnfase;
+    spnerr.textContent = erros = err;
+    if(fas){ fase = fas; spnfase.textContent = fas; }
+    if(state !== 'game' && dvinfo.classList.contains('actv')){ return; }
+    spanelm.classList.add('grow');
+    const remgrow = setTimeout(() => { spanelm.classList.remove('grow'); clearTimeout(remgrow); },700);
   }
 
   const changeSignColor = (cl) => {
-    dvluz.classList.remove(dvluz.classList[0]);
-    if (!cl) { return; }
-    if (cl !== 'on') { dvluz.classList.add('read'); return; }
-    setTimeout(() => { dvluz.classList.add(cl); },100);
+    if (cl === 'on') {
+      const turnon = setTimeout(() => { dvluz.className = cl; clearTimeout(turnon); },100);
+      return;
+    }
+    dvluz.className = !cl ? '' : cl;
   }
 
   const togInfoBtns = (isReset) => {
-    if (isReset && !btreset.classList.contains('hiden')) {
-      togHiden(btreset, btread);
-      btread.classList.add('blink');
-      setTimeout(() => { btread.classList.remove('blink'); },500);
-      return;
+    if (isReset && !btreset.classList.contains('hiden')){
+      togHiden(btreset, btread); return;
     }
     if (!isReset && !btread.classList.contains('hiden')) {
       btread.classList.add('hiden');
@@ -104,7 +94,7 @@ function lightGame() {
   }
 
   const clicouJanela = (i) => {
-    if(state !== 'game'){ return console.log('sem jogo', i ); }
+
     if(clicks >= arSeq.length){ return; }
     if(janelas.item(i).classList.contains('acesa')){ return; }
     const v = arSeq[clicks];
@@ -125,7 +115,7 @@ function lightGame() {
   }
   const geraNums = () => {
     if(arSeq.length > 11){ return; }
-    arSeq.fill(0).forEach((v,i) => { arSeq[i] = geraDifNum(); }) 
+    arSeq.fill(0).forEach((v,i) => { arSeq[i] = geraDifNum(); })
   }
   const showJanelas = () => {
     geraNums();
@@ -147,7 +137,7 @@ function lightGame() {
       }
       i++;
       janelas.item(arSeq[i]).classList.add('acende');
-    }, 1600);
+    }, 1300);
   }
 
   const novaFase = () => {
@@ -165,12 +155,12 @@ function lightGame() {
   }
 
   const goGame = (e) => {
-    if (state !== 'ini') { return; }
-    if (state === 'over') {return showMsgBox('Clique em Reiniciar!'); }
+    e.stopPropagation();
+    if (state !== 'ini') { return; };
     togInfoBtns();
     changeSignColor('read');
     btreset.classList.add('disab');
-    setTimeout(() => { showJanelas(); },1200);
+    const jtime = setTimeout(() => { showJanelas(); clearTimeout(jtime); }, 1200);
   }
 
   const reseta = (st) => {
@@ -190,44 +180,53 @@ function lightGame() {
   }
 
   const comeca = (e) => {
+    e.stopPropagation();
+    state = 'ini';
+    togInfoBtns(true);
     dvini.classList.remove('actv');
+    dvmain.scrollIntoView( {block:"start", behavior:"smooth"} )
     dvinfo.classList.add('actv');
-    reseta('ini');
-    dvmain.scrollIntoView({block:"start", behavior:"smooth"});
+  };
+
+  const desfoca = (toBtn) => {
+    const elm = !toBtn ? linkGit : dvfase.querySelector('.actv button:not(.disab)');
+    (elm ?? linkGit).focus();
   }
 
   const canPlay = () => { return state === 'game' && !predio.classList.contains('disab') }
 
   btread.onclick = goGame;
   btstart.onclick = comeca;
-  btreset.onclick = (e) => { 
+  btreset.onclick = (e) => {
+    e.stopPropagation();
     if(btreset.classList.contains('disab')){ e.preventDefault(); return; }
     reseta(e);
-  } 
+  }
 
   predio.onfocus = (e) => {
-    if(!canPlay()) {
-      predio.blur();
-      document.activeElement.closest('button').focus();
-    }
-  } 
+    if(!canPlay()){ predio.blur(); }
+  }
 
-  janelas.forEach((jj, i) => { 
-    jj.onclick = (e) => { e.preventDefault(); clicouJanela(i); }
-    jj.onfocus = (e) => { 
-      if(!canPlay()) { 
-        e.preventDefault(); jj.blur();
-        document.querySelector('footer a').focus();
-      }
-    }
-    jj.onkeydown = (e) => { 
+  janelas.forEach((jj, i) => {
+
+    jj.onclick = (e) => {
       e.stopPropagation();
-      if(!canPlay()) { e.preventDefault(); return; }
+      e.preventDefault();
+      if(canPlay()){ clicouJanela(i); }
+    }
+
+    jj.onfocus = (e) => {
+      if(!canPlay()){ jj.blur(); return desfoca(i > 0); }      
+    }
+
+    jj.onkeydown = (e) => {
+
       const tecla = e.keyCode;
+      if(!canPlay()){ return; }
       const teclasAceitas = [13, 32, 37, 38, 39, 40];
       if(!teclasAceitas.includes(tecla) ){ return; }
-
-      if([32, 13].includes(tecla) ){ e.preventDefault(); return jj.click(); }
+      e.preventDefault();
+      if([32, 13].includes(tecla) ){ return jj.click(); }
       let idx = [37, 39].includes(tecla) ? 1 : 3;
       if([37, 38].includes(tecla) ){ idx = idx * -1; }
       const elm = janelas.item(i + idx);
