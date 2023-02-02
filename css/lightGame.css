@@ -18,8 +18,7 @@ button,[type=button],[type=reset],[type=submit]{cursor: pointer}
 img{border-style:none; max-width:100%; height:auto; vertical-align:middle}
 [hidden] {display: none} ul{ padding:0; margin:0} ul, li {text-decoration:none; list-style:none}
 :root {
-  color: white; --cordark: #03045E; --cor: #003386;
-  --coralpha: #003386cf; --corb: #0077B6;
+  color: white; --cor: #003386; --corb: #0077B6;
   --urstar: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' %3E%3Cpath style='fill: white;' d='M 4.333,5.438 3.701,4.708 3.352,5.608 3.529,4.659 2.607,4.947 3.46,4.493 2.659,3.952 3.546,4.336 3.47,3.373 3.722,4.305 4.428,3.645 3.857,4.424 4.812,4.565 3.847,4.603 Z'  /%3E%3C/svg%3E");
   --pthlkdin: path("M 5,24.6 H 9.4 V 11.7 H 5 Z M 9.7,7.7 q 0,-0.9 -0.6,-1.6 -0.6,-0.6 -1.7,-0.6 -1.1,0 -1.8,0.6 -0.7,0.6 -0.7,1.6 0,0.9 0.7,1.6 0.6,0.6 1.7,0.6 v 0 q 1.1,0 1.8,-0.6 0.6,-0.6 0.6,-1.6 z M 20.6,24.6 h 4.3 v -7.4 q 0,-2.9 -1.3,-4.3 -1.3,-1.5 -3.6,-1.5 -2.5,0 -4,2.2 v 0 -1.9 h -4.3 q 0.1,1.2 0,12.9 h 4.3 v -7.2 q 0,-0.7 0.1,-1.0 0.28,-0.6 0.87,-1.11 0.55,-0.4 1.3,-0.4 2.2,0 2.2,3 z M 29.3,6 v 18 q 0,2 -1.5,3.8 -1.5,1.5 -3.8,1.5 H 6 q -2,0 -3.8,-1.5 Q 0.6,26 0.6,24 V 6 q 0,-2.2 1.6,-3.8 1.6,-1.6 3.8,-1.6 H 23.9 q 2,0 3.8,1.6 1.5,1.5 1.5,3.8 z");
   --urlrays: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='200' viewBox='0 6 100 10' %3E%3Cpath fill='white' fill-opacity='.7' stroke='black' stroke-width='.1' stroke-opacity='1' style='filter: drop-shadow(0px -3px 3px black)' d='m 0.7,1.2 V 4.376 L 49.7,7.42 v 0 0 0 0 L 99.3,4.376 V 1.2 L 49.7,6.824 Z m 0,4.66 v 2.94 L 49.7,8.6 v 0 l 49.6,0.2 v -2.94 l -49.6,2.1 v 0 z M 49.7,9.2 0.7,10.9 v 2.53 L 49.72,9.8 99.3,13.4 V 10.9 L 49.73,9.2 Z m 0,1.2 v 0 L 0.7,15 v 3.77 l 49,-7.8 49.6,7.8 V 15 L 49.73,10.4 v 0 0 z' /%3E%3C/svg%3E");
@@ -41,7 +40,7 @@ header, .dvmain, .fullpredio, .janela { flex-direction: column; }
 .flex.jc, .dvinfo, .fullpredio, .predio, .janela, footer, .dvfooter { justify-content: center; }
 header, .dvmidias ul, .flex, .dvmain, .dvinfo, .dvluzes, .fullpredio, .predio, .janela, footer, .dvfooter { align-items: center; }
 .dvinfo, .predio, .dvfooter { flex-wrap: wrap; }
-.dvlinks .socialinks ul { gap: 20px;}
+.dvlinks .socialinks ul { gap: 20px; }
 .dvmidias li a > div { width: 30px; height: 30px; margin: .2em auto; background: white; transform: scale(1.2); }
 
 .btncor {
@@ -130,7 +129,7 @@ h1, h2, h3 {
   background: url('../imgs/paternTijoloD.jpg');
   background-color: rgb(255, 212, 204); outline: none;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  counter-reset: numJanelas;
+  /* counter-reset: numJanelas; */
 }
 .janela {
   font-size: 2em; cursor: pointer; width: 28%;
@@ -145,9 +144,8 @@ h1, h2, h3 {
 .predio:not(.disab) > .janela:focus {
   border: 2px solid rgb(174, 176, 125); outline: 2px solid rgb(126, 127, 54);
 }
-.janela::before { content: counter(numJanelas); }
-
-.janela:nth-child(1n+2){ counter-increment: numJanelas; }
+/* .janela::before { content: counter(numJanelas); } */
+/* .janela:nth-child(1n+2){ counter-increment: numJanelas; } */
 .janela:active{ border: 2px solid rgb(174, 176, 125); }
 .acende { animation: pisca 1.2s both; }
 .broken { background-blend-mode: color-burn, normal; }
